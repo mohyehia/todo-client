@@ -1,4 +1,9 @@
-<h2>My Todos</h2>
+<div class="row">
+  <h2>My Todos</h2>
+  <a routerLink="/todos/-1" style="margin-left: 75%" class="btn btn-primary text-right">Add New Todo</a>
+</div>
+<br>
+<div class="alert alert-success" *ngIf="message">{{message}}</div>
 <table class="table">
     <thead class="thead-light">
       <tr>
@@ -10,19 +15,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>@fat</td>
+      <tr *ngFor="let todo of todos">
+        <th scope="row">{{todo.id}}</th>
+        <td>{{todo.description}}</td>
+        <td>{{todo.date | date}}</td>
+        <td><button class="btn btn-success" (click)="updateTodo(todo.id)">Update</button></td>
+        <td><button class="btn btn-danger" (click)="deleteTodo(todo.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>
