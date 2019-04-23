@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,8 @@ import { TodosComponent } from './components/todos/todos.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { TodoComponent } from './components/todo/todo.component';
     TodosComponent,
     NotFoundComponent,
     LogoutComponent,
-    TodoComponent
+    TodoComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,9 @@ import { TodoComponent } from './components/todo/todo.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

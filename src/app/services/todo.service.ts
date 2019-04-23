@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from '../models/todo';
+import { API_URL } from '../app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -10,22 +11,22 @@ export class TodoService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<Todo[]>('http://localhost:8080/api/todos');
+    return this.http.get<Todo[]>(`${API_URL}/api/todos`);
   }
 
   deleteTodo(id: number) {
-    return this.http.delete(`http://localhost:8080/api/todos/${id}`);
+    return this.http.delete(`${API_URL}/api/todos/${id}`);
   }
 
   getTodo(id: number) {
-    return this.http.get<Todo>(`http://localhost:8080/api/todos/${id}`);
+    return this.http.get<Todo>(`${API_URL}/api/todos/${id}`);
   }
 
   updateTodo(id: number, todo: Todo) {
-    return this.http.put<Todo>(`http://localhost:8080/api/todos/${id}`, todo);
+    return this.http.put<Todo>(`${API_URL}/api/todos/${id}`, todo);
   }
 
   addTodo(todo: Todo) {
-    return this.http.post<Todo>(`http://localhost:8080/api/todos`, todo);
+    return this.http.post<Todo>(`${API_URL}/api/todos`, todo);
   }
 }

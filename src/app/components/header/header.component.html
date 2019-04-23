@@ -21,6 +21,10 @@
         <a class="nav-link" *ngIf="!authenticationService.isLoggedIn()" routerLink="/login"><i class="fas fa-sign-in-alt"></i>
           Login</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="!authenticationService.isLoggedIn()" routerLink="/signup"><i class="fas fa-user-plus"></i>
+          Signup</a>
+      </li>
       <li class="nav-item" *ngIf="authenticationService.isLoggedIn()">
         <a class="nav-link" routerLink="/logout"><i class="fas fa-sign-out-alt"></i>
           Logout</a>
