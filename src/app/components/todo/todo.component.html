@@ -8,6 +8,11 @@
         <form #f="ngForm" (ngSubmit)="saveTodo()">
           <div class="alert alert-danger" *ngIf="error">{{error}}</div>
           <div class="form-group">
+            <label for="desc">Todo Title</label>
+            <input type="text" id="title" [(ngModel)]="todo.title" name="title" #title="ngModel" class="form-control" placeholder="Enter todo title" required>
+            <label class="text-danger" *ngIf="title.invalid && title.touched">Todo title can not be empty</label>
+          </div>
+          <div class="form-group">
             <label for="desc">Todo Description</label>
             <input type="text" id="desc" [(ngModel)]="todo.description" name="description" #description="ngModel" class="form-control" placeholder="Enter todo description" required>
             <label class="text-danger" *ngIf="description.invalid && description.touched">Todo description can not be empty</label>

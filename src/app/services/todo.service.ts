@@ -14,15 +14,15 @@ export class TodoService {
     return this.http.get<Todo[]>(`${API_URL}/api/todos`);
   }
 
-  deleteTodo(id: number) {
+  deleteTodo(id: string) {
     return this.http.delete(`${API_URL}/api/todos/${id}`);
   }
 
-  getTodo(id: number) {
+  getTodo(id: string) {
     return this.http.get<Todo>(`${API_URL}/api/todos/${id}`);
   }
 
-  updateTodo(id: number, todo: Todo) {
+  updateTodo(id: string, todo: Todo) {
     return this.http.put<Todo>(`${API_URL}/api/todos/${id}`, todo);
   }
 

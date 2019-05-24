@@ -25,7 +25,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     const username: string = this.authenticationService.getAuthenticatedUser();
     const token: string = this.authenticationService.getAuthenticationToken();
     if (username && token) {
-      return token;
+      return 'bearer ' + token;
     }
   }
 }

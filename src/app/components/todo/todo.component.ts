@@ -11,14 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TodoComponent implements OnInit {
 
   todo = new Todo();
-  id: number;
+  id: string;
 
   constructor(private todoService: TodoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 // tslint:disable-next-line: no-string-literal
     this.id = this.route.snapshot.params['id'];
-    if (this.id > 0) {
+    if (this.id !== '-1') {
       this.todoService.getTodo(this.id).subscribe(res => {
         this.todo = res;
       });
@@ -26,7 +26,7 @@ export class TodoComponent implements OnInit {
   }
 
   saveTodo() {
-    if (this.id > 0) {
+    if (this.id !== '-1') {
       this.todoService.updateTodo(this.id, this.todo).subscribe(res => {
         console.log(res);
         this.router.navigate(['todos']);
